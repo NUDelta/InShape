@@ -1,6 +1,6 @@
 microscope
 ==========
 
-Demo build for EECS 395 using Meteor
+Demo build for a physical crowdsourcing app that works to encourage physical activity among college students
 
-Site hosted at leesha.meteor.com
+Site hosted at fitsync.meteor.com
