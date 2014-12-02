@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B6FEE7F6-57CF-49E7-B14B-884CFF82639C</string>
+	<key>IDESourceControlProjectName</key>
+	<string>InShape</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>048FD26E96849D9B60F2C40381BE1EB047DEE229</key>
+		<string>https://github.com/NUDelta/InShape.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>InShape_iOS/InShape/InShape.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>048FD26E96849D9B60F2C40381BE1EB047DEE229</key>
+		<string>../../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/NUDelta/InShape.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>048FD26E96849D9B60F2C40381BE1EB047DEE229</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>048FD26E96849D9B60F2C40381BE1EB047DEE229</string>
+			<key>IDESourceControlWCCName</key>
+			<string>InShape</string>
+		</dict>
+	</array>
+</dict>
+</plist>
