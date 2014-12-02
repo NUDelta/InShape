@@ -62,6 +62,10 @@
 }
 
 - (IBAction)targetsButtonPress:(id)sender {
+    UIBarButtonItem *button = (UIBarButtonItem *)sender;
+    //NSString *buttonTitle = [button.title lowercaseString];
+    NSString *queryTerm = @"food";
+    [self queryGooglePlaces:queryTerm];
 }
 #pragma mark - MKMapViewDelegate methods.
 - (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views {
@@ -73,7 +77,11 @@
 }
 
 -(void) queryGooglePlaces: (NSString *) googleType {
-    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&sensor=true&key=%@", currentCentre.latitude, currentCentre.longitude, [NSString stringWithFormat:@"%i", currenDist], kGOOGLE_API_KEY];
+    
+    NSLog(@"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&types=%@&sensor=true&key=%@", currentCentre.latitude, currentCentre.longitude, [NSString stringWithFormat:@"%i", currenDist], googleType, kGOOGLE_API_KEY);
+    
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&types=%@&sensor=true&key=%@", currentCentre.latitude, currentCentre.longitude, [NSString stringWithFormat:@"%i", currenDist], googleType, kGOOGLE_API_KEY];
+    //NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&sensor=true&key=%@", currentCentre.latitude, currentCentre.longitude, [NSString stringWithFormat:@"%i", currenDist], kGOOGLE_API_KEY];
     
     //Formulate the string as a URL object.
     NSURL *googleRequestURL=[NSURL URLWithString:url];

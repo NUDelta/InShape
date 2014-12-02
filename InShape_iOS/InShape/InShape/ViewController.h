@@ -10,8 +10,12 @@
 #import <Parse/Parse.h>
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
+#import "MapPoint.h"
 
-#define kGOOGLE_API_KEY @"AIzaSyCyCduNi0BmBuLfYY4MCe9NKJkyvtNnoDs"
+//iOS Key
+//#define kGOOGLE_API_KEY @"AIzaSyCyCduNi0BmBuLfYY4MCe9NKJkyvtNnoDs"
+//Browser Key
+#define kGOOGLE_API_KEY @"AIzaSyCtT7XvwjhMTPCmdQays3rKy2_6YP1_J1c"
 #define kBgQueue dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
 
 @interface ViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate>
