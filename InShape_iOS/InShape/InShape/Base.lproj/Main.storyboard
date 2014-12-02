@@ -19,7 +19,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ef9-np-jda">
                                 <rect key="frame" x="0.0" y="20" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem title="My Targets" id="6g4-GQ-ZRj"/>
+                                    <barButtonItem title="View Target Options" id="6g4-GQ-ZRj">
+                                        <connections>
+                                            <action selector="targetsButtonPress:" destination="vXZ-lx-hvc" id="bka-Ej-yaS"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem id="RYo-Tp-mXo"/>
                                     <barButtonItem id="PWu-oa-S0o"/>
                                 </items>
