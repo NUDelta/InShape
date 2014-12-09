@@ -66,7 +66,7 @@
 - (IBAction)targetsButtonPress:(id)sender {
     UIBarButtonItem *button = (UIBarButtonItem *)sender;
     //NSString *buttonTitle = [button.title lowercaseString];
-    NSString *queryTerm = @"food";
+    NSString *queryTerm = @"establishment";
     [self queryGooglePlaces:queryTerm];
 }
 #pragma mark - MKMapViewDelegate methods.
