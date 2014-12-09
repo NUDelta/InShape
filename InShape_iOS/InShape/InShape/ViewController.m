@@ -81,7 +81,7 @@
         firstLaunch=NO;
     }else {
         //Set the center point to the visible region of the map and change the radius to match the search radius passed to the Google query string.
-        region = MKCoordinateRegionMakeWithDistance(centre,currenDist,currenDist);
+        region = MKCoordinateRegionMakeWithDistance(centre,currentDist,currentDist);
     }
     //Set the visible region of the map.
     [mv setRegion:region animated:YES];
@@ -89,9 +89,9 @@
 
 -(void) queryGooglePlaces: (NSString *) googleType {
     
-    NSLog(@"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&types=%@&sensor=true&key=%@", currentCentre.latitude, currentCentre.longitude, [NSString stringWithFormat:@"%i", currenDist], googleType, kGOOGLE_API_KEY);
+    NSLog(@"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&types=%@&sensor=true&key=%@", currentCentre.latitude, currentCentre.longitude, [NSString stringWithFormat:@"%i", currentDist], googleType, kGOOGLE_API_KEY);
     
-    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&types=%@&sensor=true&key=%@", currentCentre.latitude, currentCentre.longitude, [NSString stringWithFormat:@"%i", currenDist], googleType, kGOOGLE_API_KEY];
+    NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&types=%@&sensor=true&key=%@", currentCentre.latitude, currentCentre.longitude, [NSString stringWithFormat:@"%i", currentDist], googleType, kGOOGLE_API_KEY];
     //NSString *url = [NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/place/search/json?location=%f,%f&radius=%@&sensor=true&key=%@", currentCentre.latitude, currentCentre.longitude, [NSString stringWithFormat:@"%i", currenDist], kGOOGLE_API_KEY];
     
     //Formulate the string as a URL object.
@@ -130,7 +130,7 @@
     MKMapPoint westMapPoint = MKMapPointMake(MKMapRectGetMaxX(mRect), MKMapRectGetMidY(mRect));
     
     //Set your current distance instance variable.
-    currenDist = MKMetersBetweenMapPoints(eastMapPoint, westMapPoint);
+    currentDist = MKMetersBetweenMapPoints(eastMapPoint, westMapPoint);
     
     //Set your current center point on the map instance variable.
     currentCentre = self.mapView.centerCoordinate;
@@ -159,9 +159,10 @@
         // Set the lat and long.
         placeCoord.latitude=[[loc objectForKey:@"lat"] doubleValue];
         placeCoord.longitude=[[loc objectForKey:@"lng"] doubleValue];
+        CLLocationDistance distanceMeters = currentDist;
         // 5 - Create a new annotation.
         //MapPoint *placeObject = [[MapPoint alloc] initWithName:name address:vicinity coordinate:placeCoord];
-        MapPoint *placeObject = [[MapPoint alloc] initWithName:name coordinate:placeCoord];
+        MapPoint *placeObject = [[MapPoint alloc] initWithName:name distance:distanceMeters coordinate:placeCoord];
         [_mapView addAnnotation:placeObject];
     }
 }

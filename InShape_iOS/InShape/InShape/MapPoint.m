@@ -15,10 +15,11 @@
 @synthesize coordinate = _coordinate;
 
 //-(id)initWithName:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate  {
--(id)initWithName:(NSString*)name coordinate:(CLLocationCoordinate2D)coordinate  {
+-(id)initWithName:(NSString*)name distance:(CLLocationDistance)distance coordinate:(CLLocationCoordinate2D)coordinate  {
     if ((self = [super init])) {
         _name = [name copy];
 //      _address = [address copy];
+        _distance = distance;
         _coordinate = coordinate;
         
     }
@@ -32,10 +33,15 @@
         return _name;
 }
 
-//-(NSString)subtitle {
-//-(CLLocationDistance)subtitle {
+-(NSString *)subtitle {
 //  return _address;
-//    return _distance;
-//}
+    //change distance to miles
+    //change distance to string
+    NSNumber *distanceNumber = [NSNumber numberWithDouble: _distance];
+//  NSString *distanceString = [distanceNumber stringValue];
+    NSString *distanceString = [NSString stringWithFormat:@"%f miles", _distance*0.000621371];
+    return distanceString;
+
+}
 
 @end
