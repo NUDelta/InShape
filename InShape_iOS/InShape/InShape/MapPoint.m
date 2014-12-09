@@ -10,13 +10,15 @@
 
 @implementation MapPoint
 @synthesize name = _name;
-@synthesize address = _address;
+//@synthesize address = _address;
+@synthesize distance = _distance;
 @synthesize coordinate = _coordinate;
 
--(id)initWithName:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate  {
+//-(id)initWithName:(NSString*)name address:(NSString*)address coordinate:(CLLocationCoordinate2D)coordinate  {
+-(id)initWithName:(NSString*)name coordinate:(CLLocationCoordinate2D)coordinate  {
     if ((self = [super init])) {
         _name = [name copy];
-        _address = [address copy];
+//      _address = [address copy];
         _coordinate = coordinate;
         
     }
@@ -30,8 +32,10 @@
         return _name;
 }
 
--(NSString *)subtitle {
-    return _address;
-}
+//-(NSString)subtitle {
+//-(CLLocationDistance)subtitle {
+//  return _address;
+//    return _distance;
+//}
 
 @end

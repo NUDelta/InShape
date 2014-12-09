@@ -29,6 +29,7 @@
 		E2E778721A1FBD5600F59777 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E2E778711A1FBD5600F59777 /* MapKit.framework */; };
 		E2E778741A2D7FAA00F59777 /* Ford.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E2E778731A2D7FAA00F59777 /* Ford.gpx */; };
 		E2E778761A2E09D200F59777 /* MapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = E2E778751A2E09D200F59777 /* MapPoint.m */; };
+		E2E778791A3686AE00F59777 /* buildings.json in Resources */ = {isa = PBXBuildFile; fileRef = E2E778781A3686AE00F59777 /* buildings.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +72,7 @@
 		E2E778731A2D7FAA00F59777 /* Ford.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = Ford.gpx; path = InShape/Ford.gpx; sourceTree = "<group>"; };
 		E2E778751A2E09D200F59777 /* MapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPoint.m; sourceTree = "<group>"; };
 		E2E778771A2E09FE00F59777 /* MapPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
+		E2E778781A3686AE00F59777 /* buildings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = buildings.json; path = InShape/buildings.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,6 +109,7 @@
 		E237FF951A1D648E0083A5B8 = {
 			isa = PBXGroup;
 			children = (
+				E2E778781A3686AE00F59777 /* buildings.json */,
 				E2E778731A2D7FAA00F59777 /* Ford.gpx */,
 				E2E778711A1FBD5600F59777 /* MapKit.framework */,
 				E237FFCB1A1E50830083A5B8 /* AudioToolbox.framework */,
@@ -261,6 +264,7 @@
 			files = (
 				E2E778741A2D7FAA00F59777 /* Ford.gpx in Resources */,
 				E237FFAD1A1D648E0083A5B8 /* Main.storyboard in Resources */,
+				E2E778791A3686AE00F59777 /* buildings.json in Resources */,
 				E237FFB21A1D648E0083A5B8 /* LaunchScreen.xib in Resources */,
 				E237FFAF1A1D648E0083A5B8 /* Images.xcassets in Resources */,
 			);

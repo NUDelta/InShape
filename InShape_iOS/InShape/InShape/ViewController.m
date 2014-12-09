@@ -50,6 +50,8 @@
     [locationManager startUpdatingLocation];
     [locationManager requestAlwaysAuthorization];
     
+    firstLaunch=YES;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -68,11 +70,20 @@
     [self queryGooglePlaces:queryTerm];
 }
 #pragma mark - MKMapViewDelegate methods.
-- (void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views {
+-(void)mapView:(MKMapView *)mv didAddAnnotationViews:(NSArray *)views {
+    //Zoom back to the user location after adding a new set of annotations.
+    //Get the center point of the visible map.
+    CLLocationCoordinate2D centre = [mv centerCoordinate];
     MKCoordinateRegion region;
-    region = MKCoordinateRegionMakeWithDistance(locationManager.location.coordinate,1000,1000);
-    
-    
+    //If this is the first launch of the app, then set the center point of the map to the user's location.
+    if (firstLaunch) {
+        region = MKCoordinateRegionMakeWithDistance(locationManager.location.coordinate,1000,1000);
+        firstLaunch=NO;
+    }else {
+        //Set the center point to the visible region of the map and change the radius to match the search radius passed to the Google query string.
+        region = MKCoordinateRegionMakeWithDistance(centre,currenDist,currenDist);
+    }
+    //Set the visible region of the map.
     [mv setRegion:region animated:YES];
 }
 
@@ -107,6 +118,9 @@
     
     //Write out the data to the console.
     NSLog(@"Google Data: %@", places);
+    
+    //Plot points onto our map
+    [self plotPositions:places];
 }
 
 -(void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated {
@@ -120,6 +134,56 @@
     
     //Set your current center point on the map instance variable.
     currentCentre = self.mapView.centerCoordinate;
+}
+
+-(void)plotPositions:(NSArray *)data {
+    // 1 - Remove any existing custom annotations but not the user location blue dot.
+    for (id<MKAnnotation> annotation in _mapView.annotations) {
+        if ([annotation isKindOfClass:[MapPoint class]]) {
+            [_mapView removeAnnotation:annotation];
+        }
+    }
+    // 2 - Loop through the array of places returned from the Google API.
+    for (int i=0; i<[data count]; i++) {
+        //Retrieve the NSDictionary object in each index of the array.
+        NSDictionary* place = [data objectAtIndex:i];
+        // 3 - There is a specific NSDictionary object that gives us the location info.
+        NSDictionary *geo = [place objectForKey:@"geometry"];
+        // Get the lat and long for the location.
+        NSDictionary *loc = [geo objectForKey:@"location"];
+        // 4 - Get your name and address info for adding to a pin.
+        NSString *name=[place objectForKey:@"name"];
+        NSString *vicinity=[place objectForKey:@"vicinity"];
+        // Create a special variable to hold this coordinate info.
+        CLLocationCoordinate2D placeCoord;
+        // Set the lat and long.
+        placeCoord.latitude=[[loc objectForKey:@"lat"] doubleValue];
+        placeCoord.longitude=[[loc objectForKey:@"lng"] doubleValue];
+        // 5 - Create a new annotation.
+        //MapPoint *placeObject = [[MapPoint alloc] initWithName:name address:vicinity coordinate:placeCoord];
+        MapPoint *placeObject = [[MapPoint alloc] initWithName:name coordinate:placeCoord];
+        [_mapView addAnnotation:placeObject];
+    }
+}
+
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    // Define your reuse identifier.
+    static NSString *identifier = @"MapPoint";
+    
+    if ([annotation isKindOfClass:[MapPoint class]]) {
+        MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        if (annotationView == nil) {
+            annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        } else {
+            annotationView.annotation = annotation;
+        }
+        annotationView.enabled = YES;
+        annotationView.canShowCallout = YES;
+        annotationView.animatesDrop = YES;
+        return annotationView;
+    }
+    return nil;
 }
 
 
